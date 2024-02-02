@@ -28,6 +28,20 @@ PID::PID(float kp, float ki, float kd, float min, float max) : _kp(kp),
 }
 
 /**
+ * Constructor for PID class.
+ * @param config PIDConfig struct containing gains (p, i, d).
+ * @param min Minimum output value.
+ * @param max Maximum output value.
+ */
+PID::PID(PIDConfig config, float min, float max) : _kp(config.p),
+                                                                 _ki(config.i),
+                                                                 _kd(config.d),
+                                                                 _mino(min),
+                                                                 _maxo(max)
+{
+}
+
+/**
  * @brief Destructor for PID class.
  */
 PID::~PID()
@@ -87,6 +101,7 @@ void PID::reset(void)
 {
     _prevError = 0;
     _integral = 0;
+    _lastTick = micros();
 }
 
 /**
@@ -109,5 +124,17 @@ void PID::reset(float kp, float ki, float kd)
     _kp = kp;
     _ki = ki;
     _kd = kd;
+    reset();
+}
+
+/**
+ * @brief Reset the PID controller with new gains.
+ * @param config Structure with new gains.
+ */
+void PID::reset(PIDConfig config)
+{
+    _kp = config.p;
+    _ki = config.i;
+    _kd = config.d;
     reset();
 }
