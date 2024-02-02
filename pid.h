@@ -21,7 +21,7 @@ struct PIDConfig
     float p;
     float i;
     float d;
-}
+};
 
 /**
  * @brief PID class for implementing a generic PID controller.
@@ -57,6 +57,14 @@ public:
      * @param max Maximum output value (default: 0.0f).
      */
     PID(float kp, float ki, float kd, float min = 0.0f, float max = 0.0f);
+
+    /**
+     * Constructor for PID class.
+     * @param config PIDConfig struct containing gains (p, i, d).
+     * @param min Minimum output value.
+     * @param max Maximum output value.
+     */
+    PID(PIDConfig config, float min = 0.0f, float max = 0.0f);
 
     /**
      * @brief Destructor for PID class.

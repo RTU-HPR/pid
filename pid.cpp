@@ -28,6 +28,20 @@ PID::PID(float kp, float ki, float kd, float min, float max) : _kp(kp),
 }
 
 /**
+ * Constructor for PID class.
+ * @param config PIDConfig struct containing gains (p, i, d).
+ * @param min Minimum output value.
+ * @param max Maximum output value.
+ */
+PID::PID(PIDConfig config, float min = 0.0f, float max = 0.0f) : _kp(config.p),
+                                                                 _ki(config.i),
+                                                                 _kd(config.d),
+                                                                 _mino(min),
+                                                                 _maxo(max)
+{
+}
+
+/**
  * @brief Destructor for PID class.
  */
 PID::~PID()
