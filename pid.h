@@ -16,6 +16,13 @@
 
 #define TIME_DIV 1000000.0f
 
+struct PIDConfig
+{
+    float p;
+    float i;
+    float d;
+}
+
 /**
  * @brief PID class for implementing a generic PID controller.
  */
