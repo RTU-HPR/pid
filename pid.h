@@ -97,6 +97,12 @@ public:
      * @param kd New derivative gain.
      */
     void reset(float kp, float ki, float kd);
+
+    /**
+     * @brief Reset the PID controller with new gains.
+     * @param config Structure with new gains.
+     */
+    void reset(PIDConfig config);
 };
 
 #endif

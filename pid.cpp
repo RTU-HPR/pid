@@ -33,7 +33,7 @@ PID::PID(float kp, float ki, float kd, float min, float max) : _kp(kp),
  * @param min Minimum output value.
  * @param max Maximum output value.
  */
-PID::PID(PIDConfig config, float min = 0.0f, float max = 0.0f) : _kp(config.p),
+PID::PID(PIDConfig config, float min, float max) : _kp(config.p),
                                                                  _ki(config.i),
                                                                  _kd(config.d),
                                                                  _mino(min),
@@ -124,5 +124,17 @@ void PID::reset(float kp, float ki, float kd)
     _kp = kp;
     _ki = ki;
     _kd = kd;
+    reset();
+}
+
+/**
+ * @brief Reset the PID controller with new gains.
+ * @param config Structure with new gains.
+ */
+void PID::reset(PIDConfig config)
+{
+    _kp = config.p;
+    _ki = config.i;
+    _kd = config.d;
     reset();
 }
