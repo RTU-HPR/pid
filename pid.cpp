@@ -87,6 +87,7 @@ void PID::reset(void)
 {
     _prevError = 0;
     _integral = 0;
+    _lastTick = micros();
 }
 
 /**
